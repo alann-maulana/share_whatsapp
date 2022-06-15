@@ -1,7 +1,7 @@
-import 'package:flimer/flimer.dart';
-import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flimer/flimer.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:share_whatsapp/share_whatsapp.dart';
 
@@ -24,7 +24,6 @@ class _MyAppState extends State<MyApp> {
       WhatsApp.values.asMap().map<WhatsApp, String?>((key, value) {
     return MapEntry(value, null);
   });
-  final _shareWhatsappPlugin = ShareWhatsapp();
 
   @override
   void initState() {
@@ -46,7 +45,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<String> _check(WhatsApp type) async {
     try {
-      return await _shareWhatsappPlugin.installed(type: type)
+      return await shareWhatsapp.installed(type: type)
           ? 'INSTALLED'
           : 'NOT INSTALLED';
     } on PlatformException catch (e) {
@@ -80,7 +79,7 @@ class _MyAppState extends State<MyApp> {
               ListTile(
                 title: const Text('Share Text'),
                 trailing: const Icon(Icons.share),
-                onTap: () => _shareWhatsappPlugin.shareText(_kTextMessage),
+                onTap: () => shareWhatsapp.shareText(_kTextMessage),
               ),
               ListTile(
                 title: const Text('Share Image'),
@@ -88,7 +87,7 @@ class _MyAppState extends State<MyApp> {
                 onTap: () async {
                   final file = await flimer.pickImage();
                   if (file != null) {
-                    _shareWhatsappPlugin.shareFile(file);
+                    shareWhatsapp.shareFile(file);
                   }
                 },
               ),
@@ -98,14 +97,14 @@ class _MyAppState extends State<MyApp> {
                 onTap: () async {
                   final file = await flimer.pickImage();
                   if (file != null) {
-                    _shareWhatsappPlugin.share(text: _kTextMessage, file: file);
+                    shareWhatsapp.share(text: _kTextMessage, file: file);
                   }
                 },
               ),
               ListTile(
                 title: const Text('Share Text on Specific Phone Number'),
                 trailing: const Icon(Icons.share),
-                onTap: () => _shareWhatsappPlugin.share(
+                onTap: () => shareWhatsapp.share(
                   text: _kTextMessage,
                   // change with real whatsapp number
                   phone: '+0 000-0000-00000',
