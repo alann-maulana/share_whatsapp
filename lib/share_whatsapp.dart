@@ -5,6 +5,7 @@ import 'src/enums.dart';
 
 export 'package:cross_file/cross_file.dart';
 
+export 'share_whatsapp_url.dart';
 export 'src/enums.dart' show WhatsApp;
 
 /// Global singleton [ShareWhatsapp] instance
@@ -14,7 +15,7 @@ final shareWhatsapp = ShareWhatsapp();
 class ShareWhatsapp {
   /// Checks whether whatsapp is installed in device platform
   ///
-  /// [type] is optional enum parameter which is defualt to [WhatsApp.standard]
+  /// [type] is optional enum parameter which is default to [WhatsApp.standard]
   /// for business whatsapp set it to [WhatsApp.business]
   ///
   /// return true if installed otherwise false.

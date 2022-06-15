@@ -8,6 +8,11 @@ import 'share_whatsapp_platform_interface.dart';
 class ShareWhatsappUrl extends ShareWhatsappPlatform {
   ShareWhatsappUrl();
 
+  /// Registers this class as the default instance of [ShareWhatsappPlatform].
+  static void registerWith() {
+    ShareWhatsappPlatform.instance = ShareWhatsappUrl();
+  }
+
   @override
   Future<bool> installed({WhatsApp type = WhatsApp.standard}) async {
     return await canLaunchUrl(Uri.https('wa.me', 'installed'));
