@@ -1,0 +1,46 @@
+PODS:
+  - flimer (1.0.0):
+    - Flutter
+  - Flutter (1.0.0)
+  - image_picker_ios (0.0.1):
+    - Flutter
+  - share_plus (0.0.1):
+    - Flutter
+  - share_whatsapp (0.0.1):
+    - Flutter
+  - url_launcher_ios (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - flimer (from `.symlinks/plugins/flimer/ios`)
+  - Flutter (from `Flutter`)
+  - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
+  - share_plus (from `.symlinks/plugins/share_plus/ios`)
+  - share_whatsapp (from `.symlinks/plugins/share_whatsapp/ios`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
+
+EXTERNAL SOURCES:
+  flimer:
+    :path: ".symlinks/plugins/flimer/ios"
+  Flutter:
+    :path: Flutter
+  image_picker_ios:
+    :path: ".symlinks/plugins/image_picker_ios/ios"
+  share_plus:
+    :path: ".symlinks/plugins/share_plus/ios"
+  share_whatsapp:
+    :path: ".symlinks/plugins/share_whatsapp/ios"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
+
+SPEC CHECKSUMS:
+  flimer: 45e25c3a703196763a4568192fe94684b89f0552
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
+  share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
+  share_whatsapp: 95260a4b34242063c2bee3a00d78cada3e1f14ce
+  url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.11.2

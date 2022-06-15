@@ -1,0 +1,41 @@
+name: share_whatsapp
+description: A Flutter plugin to share content from your Flutter app to the WhatsApp share dialog.
+version: 1.0.0
+homepage: https://github.com/alann-maulana/share_whatsapp
+
+environment:
+  sdk: ">=2.17.3 <3.0.0"
+  flutter: ">=2.5.0"
+
+dependencies:
+  cross_file: ^0.3.3+1
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  mime: ^1.0.2
+  plugin_platform_interface: ^2.0.2
+  share_plus: ^4.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: id.my.alan.share_whatsapp
+        pluginClass: ShareWhatsappPlugin
+      ios:
+        pluginClass: ShareWhatsappPlugin
+      linux:
+        pluginClass: ShareWhatsappPlugin
+      macos:
+        pluginClass: ShareWhatsappPlugin
+      windows:
+        pluginClass: ShareWhatsappPluginCApi
+      web:
+        pluginClass: ShareWhatsappWeb
+        fileName: share_whatsapp_web.dart
