@@ -4,7 +4,7 @@ version: 1.0.0
 homepage: https://github.com/alann-maulana/share_whatsapp
 
 environment:
-  sdk: ">=2.17.3 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
   flutter: ">=2.5.0"
 
 dependencies:
@@ -16,6 +16,7 @@ dependencies:
   mime: ^1.0.2
   plugin_platform_interface: ^2.0.2
   share_plus: ^4.0.8
+  url_launcher: ^6.1.3
 
 dev_dependencies:
   flutter_test:
@@ -31,11 +32,11 @@ flutter:
       ios:
         pluginClass: ShareWhatsappPlugin
       linux:
-        pluginClass: ShareWhatsappPlugin
+        dartPluginClass: ShareWhatsappPlugin
       macos:
-        pluginClass: ShareWhatsappPlugin
+        dartPluginClass: ShareWhatsappPlugin
       windows:
-        pluginClass: ShareWhatsappPluginCApi
+        dartPluginClass: ShareWhatsappPluginCApi
       web:
         pluginClass: ShareWhatsappWeb
         fileName: share_whatsapp_web.dart

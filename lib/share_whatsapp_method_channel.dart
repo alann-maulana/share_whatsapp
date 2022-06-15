@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cross_file/cross_file.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -5,22 +7,33 @@ import 'package:mime/mime.dart';
 import 'package:share_whatsapp/src/extensions.dart';
 
 import 'share_whatsapp_platform_interface.dart';
+import 'share_whatsapp_url.dart';
 import 'src/enums.dart';
 
 /// An implementation of [ShareWhatsappPlatform] that uses method channels.
-class MethodChannelShareWhatsapp extends ShareWhatsappPlatform {
+class MethodChannelShareWhatsapp extends ShareWhatsappUrl {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
   final methodChannel = const MethodChannel('share_whatsapp');
 
   @override
   Future<bool> installed({WhatsApp type = WhatsApp.standard}) async {
-    final installed = await methodChannel.invokeMethod<int>(
-      'installed',
-      type.packageName,
-    );
+    // Desktop platforms
+    if (Platform.isMacOS || Platform.isWindows || Platform.isLinux) {
+      return await super.installed(type: type);
+    }
 
-    return installed == 1;
+    // Mobile platforms
+    if (Platform.isAndroid || Platform.isIOS) {
+      final installed = await methodChannel.invokeMethod<int>(
+        'installed',
+        type.packageName,
+      );
+
+      return installed == 1;
+    }
+
+    throw UnimplementedError('Unknown platform ${Platform.operatingSystem}');
   }
 
   @override
@@ -30,20 +43,35 @@ class MethodChannelShareWhatsapp extends ShareWhatsappPlatform {
     String? text,
     XFile? file,
   }) async {
-    String? contentType;
-    if (file != null) {
-      final bytes = await file.readAsBytes();
-      contentType = lookupMimeType(file.path, headerBytes: bytes.toList());
+    // Desktop platforms
+    if (Platform.isMacOS || Platform.isWindows || Platform.isLinux) {
+      return await super.share(
+        type: type,
+        phone: phone,
+        text: text,
+        file: file,
+      );
     }
 
-    final shared = await methodChannel.invokeMethod<int>('share', {
-      'packageName': type.packageName,
-      'phone': phone?.removeNonNumber(),
-      'text': text,
-      'file': file?.path,
-      'contentType': contentType,
-    });
+    // Mobile platforms
+    if (Platform.isAndroid || Platform.isIOS) {
+      String? contentType;
+      if (file != null) {
+        final bytes = await file.readAsBytes();
+        contentType = lookupMimeType(file.path, headerBytes: bytes.toList());
+      }
 
-    return shared == 1;
+      final shared = await methodChannel.invokeMethod<int>('share', {
+        'packageName': type.packageName,
+        'phone': phone?.removeNonNumber(),
+        'text': text,
+        'file': file?.path,
+        'contentType': contentType,
+      });
+
+      return shared == 1;
+    }
+
+    throw UnimplementedError('Unknown platform ${Platform.operatingSystem}');
   }
 }

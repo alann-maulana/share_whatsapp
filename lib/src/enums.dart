@@ -1,3 +1,4 @@
+/// WhatsApp application type
 enum WhatsApp { standard, business }
 
 extension WhatsAppExtension on WhatsApp {
